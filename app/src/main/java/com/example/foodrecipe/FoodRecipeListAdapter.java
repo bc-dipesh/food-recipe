@@ -24,7 +24,7 @@ public class FoodRecipeListAdapter extends RecyclerView.Adapter<FoodRecipeListAd
     @NonNull
     @Override
     public FoodRecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View foodRecipeItemView = layoutInflater.inflate(R.layout.food_recipe_item, parent, false);
+        View foodRecipeItemView = layoutInflater.inflate(R.layout.food_recipe, parent, false);
 
         return new FoodRecipeViewHolder(foodRecipeItemView, this);
     }
@@ -36,7 +36,7 @@ public class FoodRecipeListAdapter extends RecyclerView.Adapter<FoodRecipeListAd
         TextView foodRecipeItemContent = holder.foodRecipeItemView.findViewById(R.id.food_recipe_item_content);
 
         foodRecipeItemTitle.setText(currentFoodRecipe.getTitle());
-        foodRecipeItemContent.setText(currentFoodRecipe.getContent());
+        foodRecipeItemContent.setText(currentFoodRecipe.getBriefDescription());
     }
 
     @Override

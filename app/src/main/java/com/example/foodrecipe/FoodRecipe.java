@@ -2,11 +2,11 @@ package com.example.foodrecipe;
 
 public class FoodRecipe {
     private String title;
-    private String content;
+    private String briefDescription;
 
-    public FoodRecipe(String title, String content) {
+    public FoodRecipe(String title, String briefDescription) {
         this.title = title;
-        this.content = content;
+        this.briefDescription = briefDescription;
     }
 
     public String getTitle() {
@@ -17,11 +17,11 @@ public class FoodRecipe {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
+    public String getBriefDescription() {
+        return briefDescription;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setBriefDescription(String briefDescription) {
+        this.briefDescription = briefDescription;
     }
 }
