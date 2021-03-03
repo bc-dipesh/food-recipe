@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         // add data
         for (int i = 0; i < 20; i++) {
-            FoodRecipe foodRecipe = new FoodRecipe("Lorem Ipsum", "Lorem Ipsum dolor init ... ");
+            FoodRecipe foodRecipe = new FoodRecipe("Lorem Ipsum", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam id placerat turpis, quis bibendum magna. Donec pellentesque nisi id libero semper, vitae faucibus turpis malesuada... ", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam id placerat turpis, quis bibendum magna. Donec pellentesque nisi id libero semper, vitae faucibus turpis malesuada. Nulla posuere sollicitudin tempor. Sed tincidunt arcu felis, eget condimentum felis porta sit amet. Vivamus cursus mauris eu sapien condimentum laoreet. Donec scelerisque tellus in lorem dictum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur porttitor enim sit amet lectus venenatis varius. Aliquam erat volutpat. Sed lectus nisl, tincidunt non arcu et, cursus pulvinar est.");
             foodRecipeList.add(foodRecipe);
         }
 
