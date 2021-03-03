@@ -27,19 +27,19 @@ public class FoodRecipeListAdapter extends RecyclerView.Adapter<FoodRecipeListAd
     @NonNull
     @Override
     public FoodRecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View foodRecipeItemView = layoutInflater.inflate(R.layout.food_recipe, parent, false);
+        View foodRecipe = layoutInflater.inflate(R.layout.food_recipe, parent, false);
 
-        return new FoodRecipeViewHolder(context, foodRecipeItemView, this);
+        return new FoodRecipeViewHolder(context, foodRecipe, this, foodRecipeList);
     }
 
     @Override
     public void onBindViewHolder(@NonNull FoodRecipeViewHolder holder, int position) {
         FoodRecipe currentFoodRecipe = foodRecipeList.get(position);
-        TextView foodRecipeItemTitle = holder.foodRecipeItemView.findViewById(R.id.food_recipe_item_title);
-        TextView foodRecipeItemContent = holder.foodRecipeItemView.findViewById(R.id.food_recipe_item_content);
+        TextView foodRecipeTitle = holder.foodRecipeItemView.findViewById(R.id.food_recipe_item_title);
+        TextView foodRecipeContent = holder.foodRecipeItemView.findViewById(R.id.food_recipe_item_content);
 
-        foodRecipeItemTitle.setText(currentFoodRecipe.getTitle());
-        foodRecipeItemContent.setText(currentFoodRecipe.getBriefDescription());
+        foodRecipeTitle.setText(currentFoodRecipe.getTitle());
+        foodRecipeContent.setText(currentFoodRecipe.getBriefDescription());
     }
 
     @Override
@@ -48,22 +48,33 @@ public class FoodRecipeListAdapter extends RecyclerView.Adapter<FoodRecipeListAd
     }
 
     class FoodRecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public final View foodRecipeItemView;
+        final View foodRecipeItemView;
         final FoodRecipeListAdapter foodRecipeListAdapter;
-        private Context context;
+        final Context context;
+        final LinkedList<FoodRecipe> foodRecipeList;
 
-        public FoodRecipeViewHolder(Context context, View view, FoodRecipeListAdapter adapter) {
+        public FoodRecipeViewHolder(Context context, View view, FoodRecipeListAdapter adapter, LinkedList<FoodRecipe> foodRecipeList) {
             super(view);
             this.context = context;
             foodRecipeItemView = view;
             foodRecipeListAdapter = adapter;
             foodRecipeItemView.setOnClickListener(this);
+            this.foodRecipeList = foodRecipeList;
         }
 
         @Override
         public void onClick(View view) {
-            // launch FoodRecipeDetail Activity
             Intent intent = new Intent(context, FoodRecipeDetail.class);
+            // get the position of the item that was clicked
+            int foodRecipePosition = getLayoutPosition();
+            // get the foodRecipe
+            FoodRecipe foodRecipe = foodRecipeList.get(foodRecipePosition);
+
+            // send the data with the intent
+            intent.putExtra("ingredients", foodRecipe.getIngredients());
+            intent.putExtra("procedure", foodRecipe.getProcedure());
+
+            // navigate to another activity
             context.startActivity(intent);
         }
     }
