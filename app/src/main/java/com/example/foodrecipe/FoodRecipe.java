@@ -15,8 +15,16 @@ public class FoodRecipe {
         this.procedure = procedure;
     }
 
-    public ArrayList<String> getIngredients() {
-        return ingredients;
+    public String getIngredients() {
+        StringBuilder ingredients = new StringBuilder();
+
+        for (String ingredient :
+                this.ingredients) {
+            ingredients.append(ingredient);
+            ingredients.append("\n");
+        }
+
+        return ingredients.toString();
     }
 
     public void setIngredients(ArrayList<String> ingredients) {
