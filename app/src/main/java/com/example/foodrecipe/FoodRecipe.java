@@ -1,14 +1,26 @@
 package com.example.foodrecipe;
 
+import java.util.ArrayList;
+
 public class FoodRecipe {
     private String title;
     private String briefDescription;
+    private ArrayList<String> ingredients;
     private String procedure;
 
-    public FoodRecipe(String title, String briefDescription, String procedure) {
+    public FoodRecipe(String title, String briefDescription, ArrayList<String> ingredients, String procedure) {
         this.title = title;
         this.briefDescription = briefDescription;
+        this.ingredients = ingredients;
         this.procedure = procedure;
+    }
+
+    public ArrayList<String> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(ArrayList<String> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public String getTitle() {
