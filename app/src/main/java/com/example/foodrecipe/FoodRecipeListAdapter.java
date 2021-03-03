@@ -1,6 +1,7 @@
 package com.example.foodrecipe;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,10 @@ public class FoodRecipeListAdapter extends RecyclerView.Adapter<FoodRecipeListAd
 
     private final LinkedList<FoodRecipe> foodRecipeList;
     private LayoutInflater layoutInflater;
+    private Context context;
 
     public FoodRecipeListAdapter(Context context, LinkedList<FoodRecipe> foodRecipeList) {
+        this.context = context;
         layoutInflater = LayoutInflater.from(context);
         this.foodRecipeList = foodRecipeList;
     }
@@ -26,7 +29,7 @@ public class FoodRecipeListAdapter extends RecyclerView.Adapter<FoodRecipeListAd
     public FoodRecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View foodRecipeItemView = layoutInflater.inflate(R.layout.food_recipe, parent, false);
 
-        return new FoodRecipeViewHolder(foodRecipeItemView, this);
+        return new FoodRecipeViewHolder(context, foodRecipeItemView, this);
     }
 
     @Override
@@ -44,14 +47,24 @@ public class FoodRecipeListAdapter extends RecyclerView.Adapter<FoodRecipeListAd
         return foodRecipeList.size();
     }
 
-    class FoodRecipeViewHolder extends RecyclerView.ViewHolder {
+    class FoodRecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final View foodRecipeItemView;
         final FoodRecipeListAdapter foodRecipeListAdapter;
+        private Context context;
 
-        public FoodRecipeViewHolder(View view, FoodRecipeListAdapter adapter) {
+        public FoodRecipeViewHolder(Context context, View view, FoodRecipeListAdapter adapter) {
             super(view);
+            this.context = context;
             foodRecipeItemView = view;
             foodRecipeListAdapter = adapter;
+            foodRecipeItemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            // launch FoodRecipeDetail Activity
+            Intent intent = new Intent(context, FoodRecipeDetail.class);
+            context.startActivity(intent);
         }
     }
 }
